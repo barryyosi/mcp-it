@@ -1,0 +1,19 @@
+[project]
+name = "mcp-it"
+version = "0.1.0"
+description = "Expose CLI commands into agent instructions (AGENTS.md like files CALUDE.md/GEMINI.md/...)"
+readme = "README.md"
+authors = [
+    { name = "Barry Yosilevich", email = "bary_yosi@hotmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "typer>=0.20.0",
+]
+
+[project.scripts]
+mcp-it = "mcp_it.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.8.4,<0.9.0"]
+build-backend = "uv_build"
