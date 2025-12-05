@@ -33,6 +33,13 @@ Preview without writing:
 mcp-it <cli_executable> <target_file> --dry-run
 ```
 
+### Example
+
+Inject the GitHub CLI tools into `AGENTS.md` (creating the file if it does not exist):
+```bash
+mcp-it gh AGENTS.md --create-if-missing
+```
+
 
 ## Contributions are welcome! 🤝
 
