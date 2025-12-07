@@ -18,7 +18,7 @@ Clone, install, and run globally.
 git clone https://github.com/your-org/mcp-it.git
 cd mcp-it
 uv sync
-uv tool install --path .
+uv tool install .
 ```
 
 ## 📖 Usage Guide
