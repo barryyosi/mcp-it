@@ -4,10 +4,8 @@ from typing import Iterable, Tuple
 
 from .types import CommandInfo, OptionInfo
 
-TOOLS_START = "<!-- mcp-it tools start -->"
-TOOLS_END = "<!-- mcp-it tools end -->"
-LEGACY_TOOLS_START = "<!-- tools start -->"
-LEGACY_TOOLS_END = "<!-- tools end -->"
+TOOLS_START = "<!-- tools start -->"
+TOOLS_END = "<!-- tools end -->"
 CLI_HEADING_PATTERN = re.compile(r"^## External CLI tools for `([^`]+)`\s*$")
 
 
@@ -68,9 +66,7 @@ def render_tools_section(
 
 def inject_tools_section(content: str, tools_block: str) -> str:
     """Insert or replace the tools section within AGENTS.md content."""
-    normalized_content = _normalize_markers(content)
-    normalized_tools = _normalize_markers(tools_block)
-    tools_inner = _strip_outer_tools_markers(normalized_tools, fallback=normalized_tools.strip())
+    tools_inner = _strip_outer_tools_markers(tools_block, fallback=content.strip())
 
     block_pattern = re.compile(
         rf"{re.escape(TOOLS_START)}.*?{re.escape(TOOLS_END)}",
@@ -155,7 +151,3 @@ def _merge_tools_blocks(existing_block: str, new_block: str) -> str:
     merged_sections = [sections[label].strip() for label in order if label in sections]
     return "\n\n".join(merged_sections).strip() + "\n"
 
-
-def _normalize_markers(text: str) -> str:
-    """Replace legacy markers with canonical markers and strip duplicates."""
-    return text.replace(LEGACY_TOOLS_START, TOOLS_START).replace(LEGACY_TOOLS_END, TOOLS_END)
