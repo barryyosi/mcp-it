@@ -15,7 +15,7 @@
 Clone, install, and run globally.
 
 ```bash
-git clone https://github.com/your-org/mcp-it.git
+git clone https://github.com/barryyosi/mcp-it.git
 cd mcp-it
 uv sync
 uv tool install .
