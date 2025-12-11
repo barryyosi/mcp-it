@@ -73,18 +73,18 @@ def inject_tools_section(content: str, tools_block: str) -> str:
         flags=re.DOTALL,
     )
 
-    if TOOLS_START in normalized_content and TOOLS_END in normalized_content:
-        existing_inner = _extract_tools_block(normalized_content)
+    if TOOLS_START in content and TOOLS_END in content:
+        existing_inner = _extract_tools_block(content)
         merged_inner = _merge_tools_blocks(existing_inner, tools_inner)
-        content_without_blocks = block_pattern.sub("", normalized_content).rstrip()
+        content_without_blocks = block_pattern.sub("", content).rstrip()
         separator = "\n\n" if content_without_blocks else ""
         return f"{content_without_blocks}{separator}{TOOLS_START}\n{merged_inner.strip()}\n{TOOLS_END}\n"
 
-    if TOOLS_START in normalized_content or TOOLS_END in normalized_content:
-        sanitized = normalized_content.replace(TOOLS_START, "").replace(TOOLS_END, "").strip()
-        normalized_content = sanitized
+    if TOOLS_START in content or TOOLS_END in content:
+        sanitized = content.replace(TOOLS_START, "").replace(TOOLS_END, "").strip()
+        content = sanitized
 
-    separator = "\n\n" if normalized_content.strip() else ""
+    separator = "\n\n" if content.strip() else ""
     return f"{normalized_content}{separator}{TOOLS_START}\n{tools_inner.strip()}\n{TOOLS_END}\n".lstrip("\n")
 
 
